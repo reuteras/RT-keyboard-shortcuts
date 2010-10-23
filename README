@@ -6,8 +6,42 @@ Use this at your own risk. This is my first Greasemonky script
 and I'm not used to Javascript either...
 
 Since I have to go through a couple of queues where we can't use
-spam-filters (postmaster mail) and therefore can contain a lot of
-emails I wanted a faster way to do it.
+spam-filters (postmaster mail) I wanted a faster way to handle them.
+
+INSTALL
+=======
+
+You'll need to have Greasemonkey for Firefox installed (should work
+in other ways to be this is alpha code). Get the source file and 
+change relevant parts of the file (search for CHANGEME). Please
+let me know if you find anything else that needs changing!
+
+Put your edited file on a web server and point your Firefox browser 
+with Greasemonkey installed to the url and install the script in
+Greasemonkey.
+
+The next time you go to your RT first page and would like go no the
+Postmaster queue and look through the _new_ tickets you can to the
+following
+
+Q (and enter queue name Postmaster, q will also show open tickets)
+d (displays first message)
+t (take the ticket)
+o (open the ticket)
+n (go to next ticket)
+g->S (show results)
+# (enter ticket number to open it)
+? (open help)
+
+BUGS
+====
+
+There will be bugs and since I use simple pattern matching and it is
+so easy to install different addons you're urls might differ. Please
+report bugs at http://github.com/reuteras/RT-keyboard-shortcuts.
+
+Info
+====
 
 You can find some information on the project web page:
 
