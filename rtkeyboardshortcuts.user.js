@@ -392,7 +392,6 @@ function RTSource() {
 		if (queue){
 			if(arguments[0] == "new" ){
 				queue=queue + ".*new";
-				alert(queue);
 				RTmatch_link(queue);
 			}else{
 				RTmatch_link(queue, "break");
@@ -457,7 +456,7 @@ function RTSource() {
 			'n': function() { RTmatch_link(/Search\/Build.html\?NewQuery=1/); },
 			's': function() { RTmatch_link(/Search\/Results.html\?Format=/); },
 		},
-		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.5alpha."); return true; },
+		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.6alpha."); return true; },
 		// CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
 		// queue. I'll try to get the code or a pointer to it later...
 		'x': function() { RTform_submit("quick-spam"); },
