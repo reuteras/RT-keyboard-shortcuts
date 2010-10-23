@@ -2,8 +2,8 @@ RT keyboard shortcuts
 =====================
 
 Disclaimer: 
-Use this at your own risk. This is my first Greasemonky script
-and I'm not used to Javascript either...
+Use this at your own risk. This is my first Greasemonky script and I'm
+not used to Javascript either...
 
 Since I have to go through a couple of queues where we can't use
 spam-filters (postmaster mail) I wanted a faster way to handle them.
@@ -11,12 +11,12 @@ spam-filters (postmaster mail) I wanted a faster way to handle them.
 INSTALL
 =======
 
-You'll need to have Greasemonkey for Firefox installed (should work
-in other ways to be this is alpha code). Get the source file and 
-change relevant parts of the file (search for CHANGEME). Please
-let me know if you find anything else that needs changing!
+You'll need to have Greasemonkey for Firefox installed (should work in
+other ways to be this is alpha code). Get the source file and change
+relevant parts of the file (search for CHANGEME). Please let me know
+if you find anything else that needs changing!
 
-Put your edited file on a web server and point your Firefox browser 
+Put your edited file on a web server and point your Firefox browser
 with Greasemonkey installed to the url and install the script in
 Greasemonkey.
 
@@ -29,6 +29,7 @@ d (displays first message)
 t (take the ticket)
 o (open the ticket)
 n (go to next ticket)
+x (mark as spam, needs the extra function below)
 g->S (show results)
 # (enter ticket number to open it)
 ? (open help)
@@ -38,7 +39,39 @@ BUGS
 
 There will be bugs and since I use simple pattern matching and it is
 so easy to install different addons you're urls might differ. Please
-report bugs at http://github.com/reuteras/RT-keyboard-shortcuts.
+report bugs at
+http://github.com/reuteras/RT-keyboard-shortcuts/issues.
+
+Spam
+====
+
+To be able to use the x option to mark a message as spam you'll either
+have to change this script to your environment or ad the following
+code to the file
+
+local/html/Callbacks/quick_move-3.8/Ticket/Elements/ShowBasics/EndOfList
+
+The code was written by a former colleague of mine.
+
+%# Original by Martin Roos <room@kth.se>
+%#
+
+  <tr>
+    <td class="label id"><&|/l&>Quick move</&>:</td>
+    <td class="value id">
+        <form action="<% RT->Config->Get('WebPath') %>/Ticket/Display.html" id="quick-move">
+        <input type="hidden" name="id" value="<% $Ticket->id %>">
+        <input type="hidden" name="Action" value="Modify">
+        <& /Elements/SelectQueue, Name => 'Queue', Default => RT->Config->Get("DefaultQueue", $session{'CurrentUser'}), %ARGS, ShowNullOption => 0, ShowAllQueues => 0, NamedValues => 1 &>
+        <input type="submit" class="button" value="<&|/l&>Move</&>" />
+        </form>
+  </tr>
+
+<%ARGS>
+ $Ticket => undef;
+</%ARGS>
+
+
 
 Info
 ====
