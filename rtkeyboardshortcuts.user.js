@@ -8,6 +8,10 @@
  * ticket.sys.kth.se
  * www.reuteras.com/rt
  *
+ * Add your own installation to the @include section below and in the
+ * SupportedSites section. Search for the string CHANGEME and change to 
+ * values suitable for your environment.
+ *
  * Original message from Acunote:
  *
  *  Acunote Shortcuts.
@@ -48,6 +52,7 @@
 // @include       https://ticket.sys.kth.se*
 // @include       https://www.reuteras.com/rt*
 // ==/UserScript==
+// CHANGEME
 
 /*
  *  ===========================================================
@@ -249,7 +254,7 @@ function RTSource() {
 			'a - resolve\n' +
 			'c - comment\n' +
 			'C - comment on last\n' +
-			'd - display current ticket\n' +
+			'd - display current ticket or first from a list\n' +
 			'e -> Edit:\n' +
 			'  b - Basics\n' +
 			'  d - Dates\n' +
@@ -260,6 +265,8 @@ function RTSource() {
 			'  r - Reminders\n' +
 			'f - forward current ticket\n' +
 			'o - open ticket\n' +
+			'q - open queue with name from prompt\n' +
+			'Q - open queue with name from prompt and show new messages\n' +
 			'r - reply\n' +
 			'R - reply on last\n' +
 			's - steal ticket\n' +
@@ -293,7 +300,8 @@ function RTSource() {
 		alert(RCursorHelp);
 		return true;
 	};
-
+	
+	// Submit the form named formName
 	function RTform_submit(formName) {
 		if (document.getElementById(formName)){
 			document.forms[formName].submit();
@@ -304,6 +312,7 @@ function RTSource() {
 		return true;
 	};
 
+	// Navigoation using the rel links in the page from RT
 	function RTnext_or_prev(direction) {
 		var links = document.getElementsByTagName("link");
 		var link=-1;
@@ -316,11 +325,12 @@ function RTSource() {
 			event.returnValue = false;
 			return false;
 		}
-		// Ugly replace, have to check if our last upgrade introduced a conf error FIXIT
+		// Ugly replace, have to check if our last upgrade introduced a conf error CHANGEME
 		window.location = links[link].href.replace(/Ticket/,"/Ticket");
 		return true;
 	};
 
+	// Get the link for the element matchstring and follow it
 	function RTmatch_name(matchString) {
 		var link = document.getElementsByName(matchstring);
 		if (link){
@@ -331,6 +341,7 @@ function RTSource() {
 		return false;
 	};
 
+	// Match a part of a url and follow it
 	function RTmatch_link(matchString) {
 		var breakOn = (arguments[1]) ? arguments[1] : "" ;
 		var links = document.getElementsByTagName("a");
@@ -350,10 +361,42 @@ function RTSource() {
 		return true;
 	};
 
+	// Open ticket number given by prompt number
 	function RTgototicket() {
 		var nr = prompt("Open ticket:", "");
 		if (nr){
-			window.location = "https://ticket.sys.kth.se/rt3/Ticket/Display.html?id=" + nr;
+			var scripts = document.getElementsByTagName("script");
+			var link=-1;
+			for (i = 0; i < scripts.length; i++) {
+				if (scripts[i].hasAttribute("src") && scripts[i].src.match("/util.js")) {
+					link=i;
+				}
+			}
+			if (link == -1){
+				event.returnValue = false;
+				return false;
+			}
+			var url = scripts[link].src.replace(/NoAuth\/js\/util.js/,"");
+			var base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
+			url.replace(base);
+			window.location = url + "Ticket/Display.html?id=" + nr;
+			return true;
+		}
+		event.returnValue = false;
+		return false;
+	};
+
+	// Open the first queue matched by the text from the prompt
+	function RTqueue() {
+		var queue = prompt("Open queue:", "");
+		if (queue){
+			if(arguments[0] == "new" ){
+				queue=queue + ".*new";
+				alert(queue);
+				RTmatch_link(queue);
+			}else{
+				RTmatch_link(queue, "break");
+			}
 			return true;
 		}
 		event.returnValue = false;
@@ -376,7 +419,7 @@ function RTSource() {
 			'p': function() { RTmatch_link(/ModifyPeople.html/); },
 			'r': function() { RTmatch_link(/Reminders.html/); },
 		},
-		'd': function() { RTmatch_name(/focus/); },
+		'd': function() { RTmatch_link(/\/Display.html/, "break"); },
 		'f': function() { RTmatch_link(/Forward.html/); },
 		'F': function() { RTnext_or_prev("first"); },
 		'g': {
@@ -400,6 +443,8 @@ function RTSource() {
 		'N': function() { RTform_submit("CreateTicketInQueue"); },
 		'o': function() { RTmatch_link(/Status=open/); },
 		'p': function() { RTnext_or_prev("prev"); },
+		'q': function() { RTqueue(); },
+		'Q': function() { RTqueue("new"); },
 		'r': function() { RTmatch_link(/Action=Respond/, "break"); },
 		'R': function() { RTmatch_link(/Action=Respond/); },
 		's': function() { RTmatch_link(/Action=Steal/); },
@@ -412,7 +457,9 @@ function RTSource() {
 			'n': function() { RTmatch_link(/Search\/Build.html\?NewQuery=1/); },
 			's': function() { RTmatch_link(/Search\/Results.html\?Format=/); },
 		},
-		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.4alpha."); return true; },
+		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.5alpha."); return true; },
+		// CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
+		// queue. I'll try to get the code or a pointer to it later...
 		'x': function() { RTform_submit("quick-spam"); },
 	};
 };
@@ -426,6 +473,7 @@ function RTSource() {
  *  ===========================================================
  */
 var SupportedSites = {
+	// CHANGEME
   	'kth.se':      		RTSource,
   	'reuteras.com':  		RTSource,
 };
