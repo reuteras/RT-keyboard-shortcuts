@@ -90,7 +90,7 @@ function ShortcutsSource() {
 		},
 
 		init: function() {
-			if (!window.SHORTCUTS) return false;
+			if (!window.SHORTCUTS) { return false; }
 			this.createStatusArea();
 			this.setObserver();
 		},
@@ -122,7 +122,7 @@ function ShortcutsSource() {
 
 		// shortcut notification/status area
 		createStatusArea: function() {
-     		var area = document.createElement('div');
+			var area = document.createElement('div');
 			area.setAttribute('id', 'shortcut_status');
 			area.style.display = 'none';
 			document.body.appendChild(area);
@@ -144,7 +144,7 @@ function ShortcutsSource() {
 
 		// This method creates event observer for the whole document
 		// This is the common way of setting event observer that works 
-     	// in all modern brwosers with "keypress" fix for
+		// in all modern brwosers with "keypress" fix for
 		// Konqueror/Safari/KHTML borrowed from Prototype.js
 		setObserver: function() {
 			var name = 'keypress';
@@ -162,41 +162,41 @@ function ShortcutsSource() {
 		// and checks it we have action for it
 		keyCollector: function(e) {
 			// do not listen if no shortcuts defined
-			if (!window.SHORTCUTS) return false;
+			if (!window.SHORTCUTS) { return false; }
 			// do not listen if listener was explicitly turned off
-			if (!shortcutListener.listen) return false;
+			if (!shortcutListener.listen) { return false; }
 			// leave modifiers for browser
-			if (e.altKey || e.ctrlKey || e.metaKey) return false;
+			if (e.altKey || e.ctrlKey || e.metaKey) { return false; }
 			var keyCode = e.keyCode;
 			// do not listen for Ctrl, Alt, Tab, Space, Esc and others
 			for (var key in this.keys) {
-				if (e.keyCode == this.keys[key]) return false;
+				if (e.keyCode == this.keys[key]) { return false; }
 			}
 			// do not listen for functional keys
 			if (navigator.userAgent.match(/Gecko/)) {
-				if (e.keyCode >= 112 && e.keyCode <=123) return false;
+				if (e.keyCode >= 112 && e.keyCode <=123) { return false; }
 			}
 			// do not listen in input/select/textarea fields
-			if (this.isInputTarget(e)) return false;
+			if (this.isInputTarget(e)) { return false; }
 			// get letter pressed for different browsers
-			var code = e.which ? e.which : e.keyCode
+			var code = e.which ? e.which : e.keyCode;
 			var letter = String.fromCharCode(code).toLowerCase();
-			if (e.shiftKey) letter = letter.toUpperCase();
+			if (e.shiftKey) { letter = letter.toUpperCase(); }
 			// IE hack to support "?"
 			if (window.ie && (code == 191) && e.shiftKey) {
 				letter = '?';
 			}
-			if (shortcutListener.process(letter)) shortcutListener.stopEvent(e);
+			if (shortcutListener.process(letter)) { shortcutListener.stopEvent(e); }
 		},
 
 		// process keys
 		process: function(letter) {
-			if (!window.SHORTCUTS) return false;
-			if (!shortcutListener.listen) return false;
+			if (!window.SHORTCUTS) { return false; }
+			if (!shortcutListener.listen) { return false; }
 			// if no combination then start from the begining
 			if (!shortcutListener.shortcut) { shortcutListener.shortcut = SHORTCUTS; }
 			// if unknown letter then say goodbye
-			if (!shortcutListener.shortcut[letter]) return false
+			if (!shortcutListener.shortcut[letter]) { return false; }
 			if (typeof(shortcutListener.shortcut[letter]) == "function") {
 				shortcutListener.shortcut[letter]();
 				shortcutListener.clearCombination();
@@ -207,11 +207,11 @@ function ShortcutsSource() {
 				if (shortcutListener.combination.length > 0) {
 					shortcutListener.showCombination();
 					// save last keypress timestamp (for autoclear)
-					var d = new Date;
+					var d = new Date();
 					shortcutListener.lastKeypress = d.getTime();
 					// autoclear combination in 2 seconds
 					setTimeout("shortcutListener.clearCombinationOnTimeout()", shortcutListener.clearTimeout);
-				};
+				}
 			}
 			return true;
 		},
@@ -224,14 +224,14 @@ function ShortcutsSource() {
 		},
 
 		clearCombinationOnTimeout: function() {
-			var d = new Date;
+			var d = new Date();
 			// check if last keypress was earlier than (now - clearTimeout)
 			// 100ms here is used just to be sure that this will work in superfast browsers :)
 			if ((d.getTime() - shortcutListener.lastKeypress) >= (shortcutListener.clearTimeout - 100)) {
 				shortcutListener.clearCombination();
 			}
 		}
-	}
+	};
 }
 
 /*
@@ -310,13 +310,13 @@ function RTSource() {
 			return false;
 		}
 		return true;
-	};
+	}
 
 	// Navigoation using the rel links in the page from RT
 	function RTnext_or_prev(direction) {
 		var links = document.getElementsByTagName("link");
 		var link=-1;
-		for (i = 0; i < links.length; i++) {
+		for ( var i = 0; i < links.length; i++) {
 			if (links[i].hasAttribute("rel") && links[i].rel == direction) {
 				link=i;
 			}
@@ -328,28 +328,28 @@ function RTSource() {
 		// Ugly replace, have to check if our last upgrade introduced a conf error CHANGEME
 		window.location = links[link].href.replace(/Ticket/,"/Ticket");
 		return true;
-	};
+	}
 
 	// Get the link for the element matchstring and follow it
 	function RTmatch_name(matchString) {
-		var link = document.getElementsByName(matchstring);
+		var link = document.getElementsByName(matchString);
 		if (link){
-			window.location = links[link].href;
+			window.location = link.href;
 			return true;
 		}
 		event.returnValue = false;
 		return false;
-	};
+	}
 
 	// Match a part of a url and follow it
 	function RTmatch_link(matchString) {
 		var breakOn = (arguments[1]) ? arguments[1] : "" ;
 		var links = document.getElementsByTagName("a");
 		var link=-1;
-		for (i = 0; i < links.length; i++) {
+		for ( var i = 0; i < links.length; i++) {
 			if (links[i].href.match(matchString)) {
 				link=i;
-				if (breakOn == "break") break;
+				if (breakOn == "break") { break; }
 			}
 		}
 		if (link == -1){
@@ -359,32 +359,48 @@ function RTSource() {
 		}
 		window.location = links[link].href;
 		return true;
-	};
+	}
+
+	// Find base url
+	function RTbaseurl() {
+		var scripts = document.getElementsByTagName("script");
+		var link=-1;
+		for ( var i = 0; i < scripts.length; i++) {
+			if (scripts[i].hasAttribute("src") && scripts[i].src.match("/util.js")) {
+				link=i;
+			}
+		}
+		if (link == -1){
+			return false;
+		}
+		var url = scripts[link].src.replace(/NoAuth\/js\/util.js/,"");
+		var base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
+		url.replace(base);
+		return url;	
+	}
+
+	// RT home
+	function RThome(){
+		var url = RTbaseurl();
+		if (url) {
+			window.location = url + "index.html";
+			return true;
+		}
+		event.returnValue = false;
+		return false;
+	}
 
 	// Open ticket number given by prompt number
 	function RTgototicket() {
 		var nr = prompt("Open ticket:", "");
 		if (nr){
-			var scripts = document.getElementsByTagName("script");
-			var link=-1;
-			for (i = 0; i < scripts.length; i++) {
-				if (scripts[i].hasAttribute("src") && scripts[i].src.match("/util.js")) {
-					link=i;
-				}
-			}
-			if (link == -1){
-				event.returnValue = false;
-				return false;
-			}
-			var url = scripts[link].src.replace(/NoAuth\/js\/util.js/,"");
-			var base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
-			url.replace(base);
+			var url = RTbaseurl();
 			window.location = url + "Ticket/Display.html?id=" + nr;
 			return true;
 		}
 		event.returnValue = false;
 		return false;
-	};
+	}
 
 	// Open the first queue matched by the text from the prompt
 	function RTqueue() {
@@ -400,7 +416,7 @@ function RTSource() {
 		}
 		event.returnValue = false;
 		return false;
-	};
+	}
 
 	var SHORTCUTS = {
 		'?': function() { RThelp(); },
@@ -416,7 +432,7 @@ function RTSource() {
 			'j': function() { RTmatch_link(/ModifyAll.html/); },
 			'l': function() { RTmatch_link(/ModifyLinks.html/); },
 			'p': function() { RTmatch_link(/ModifyPeople.html/); },
-			'r': function() { RTmatch_link(/Reminders.html/); },
+			'r': function() { RTmatch_link(/Reminders.html/); }
 		},
 		'd': function() { RTmatch_link(/\/Display.html/, "break"); },
 		'f': function() { RTmatch_link(/Forward.html/); },
@@ -427,14 +443,14 @@ function RTSource() {
 			'c': function() { RTmatch_link(/Admin/); },
 			// If you have the documentation installed
 			'd': function() { RTmatch_link(/Developer\/Perldoc/); },
-			'h': function() { RTmatch_link(/index.html/, "break"); },
+			'h': function() { RThome(); },
 			'l': function() { RTmatch_link(/NoAuth\/Logout.html/); },
 			'p': function() { RTmatch_link(/Prefs\/Other.html/); },
 			'S': function() { RTmatch_link(/Results.html\?Format/); },
 			's': function() { RTmatch_link(/Simple.html/); },
 			't': { 
 				'i': function() { RTmatch_link(/Search\/Build.html/); },
-				'o': function() { RTmatch_link(/Tools/); },
+				'o': function() { RTmatch_link(/Tools/); }
 			}
 		},
 		'L': function() { RTnext_or_prev("last"); },
@@ -454,14 +470,14 @@ function RTSource() {
 			'e': function() { RTmatch_link(/Search\/Build.html\?Format=/); },
 			'g': function() { RTmatch_link(/Chart.html/); },
 			'n': function() { RTmatch_link(/Search\/Build.html\?NewQuery=1/); },
-			's': function() { RTmatch_link(/Search\/Results.html\?Format=/); },
+			's': function() { RTmatch_link(/Search\/Results.html\?Format=/); }
 		},
-		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.6alpha."); return true; },
+		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.8alpha."); return true; },
 		// CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
 		// queue. I'll try to get the code or a pointer to it later...
-		'x': function() { RTform_submit("quick-spam"); },
+		'x': function() { RTform_submit("quick-spam"); }
 	};
-};
+}
 
 /*
  *  ===========================================================
@@ -473,8 +489,8 @@ function RTSource() {
  */
 var SupportedSites = {
 	// CHANGEME
-  	'kth.se':      		RTSource,
-  	'reuteras.com':  		RTSource,
+	'kth.se':			RTSource,
+	'reuteras.com':	RTSource
 };
 
 /*
@@ -489,13 +505,12 @@ var addScript = function(ShortcutsSource) {
 		var i = js.indexOf('{');
 		js = js.substr(i + 1, js.length - i - 2);
 		return js;
-	}
+	};
 	var script = document.createElement('script');
- 	var source = getSource(ShortcutsSource);
+	var source = getSource(ShortcutsSource);
     
-	for (site in SupportedSites) {
-		if (typeof(site) != 'string')
-			continue;
+	for (var site in SupportedSites) {
+		if (typeof(site) != 'string') { continue; }
 		if (location.href.match(site)) {
 			source += getSource(SupportedSites[site]) + '\n window.Cursor.init();';
 			break;
@@ -508,6 +523,6 @@ var addScript = function(ShortcutsSource) {
 	if (!document.getElementById('RTKeyboardShortcuts')) {
 		document.body.appendChild(script);
 	}
-}
+};
 addScript(ShortcutsSource);
 
