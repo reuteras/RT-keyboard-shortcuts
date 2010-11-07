@@ -152,9 +152,9 @@ function ShortcutsSource() {
 				name = 'keydown';
 			}
 			if (document.addEventListener) {
-				document.addEventListener(name, function(e) {shortcutListener.keyCollector(e)}, false);
+				document.addEventListener(name, function(e) {shortcutListener.keyCollector(e);}, false);
 			} else if (document.attachEvent) {
-				document.attachEvent('on'+name, function(e) {shortcutListener.keyCollector(e)});
+				document.attachEvent('on'+name, function(e) {shortcutListener.keyCollector(e);});
 			}
 		},
 
