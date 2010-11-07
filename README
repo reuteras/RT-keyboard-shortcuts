@@ -24,7 +24,7 @@ The next time you go to your RT first page and would like go no the
 Postmaster queue and look through the _new_ tickets you can to the
 following
 
-Q (and enter queue name Postmaster, q will also show open tickets)
+Q (and enter a queue name Postmaster, q will also show open tickets)
 d (displays first message)
 t (take the ticket)
 o (open the ticket)
