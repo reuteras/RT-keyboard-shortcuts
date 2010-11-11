@@ -252,6 +252,7 @@ function RTSource() {
 			'\n=== Ticket ===\n' +
 			'# - open ticket with number\n' +
 			'a - resolve\n' +
+			'b - bookmark\n' +
 			'c - comment\n' +
 			'C - comment on last\n' +
 			'd - display current ticket or first from a list\n' +
@@ -423,6 +424,7 @@ function RTSource() {
 		'/': function() { RTmatch_link(/Search\/Build.html/); },
 		'#': function() { RTgototicket(); },
 		'a': function() { RTmatch_link(/Status=resolved/); },
+		'b': function() { RTmatch_link(/TicketBookmark/); },
 		'c': function() { RTmatch_link(/Action=Comment/, "break"); },
 		'C': function() { RTmatch_link(/Action=Comment/); },
 		'e': {
