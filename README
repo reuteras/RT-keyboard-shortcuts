@@ -8,6 +8,12 @@ not used to Javascript either...
 Since I have to go through a couple of queues where we can't use
 spam-filters (postmaster mail) I wanted a faster way to handle them.
 
+Update 2012-12-31
+=================
+
+Since I no longer use RT at work I won't be updating this script.
+
+
 INSTALL
 =======
 
