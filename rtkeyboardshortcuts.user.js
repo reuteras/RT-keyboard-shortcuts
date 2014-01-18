@@ -50,7 +50,8 @@
 // @name          RT Keyboard Shortcuts
 // @description   Adds keyboard shortcuts for RT.
 // @include       https://ticket.sys.kth.se*
-// @include       https://www.reuteras.com/rt*
+// @include       https://rt.reuteras.com/rt*
+// @grant         none
 // ==/UserScript==
 // CHANGEME
 
