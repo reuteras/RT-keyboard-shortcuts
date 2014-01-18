@@ -6,7 +6,7 @@
  *
  * Adds keyboard navigation for:
  * ticket.sys.kth.se
- * www.reuteras.com/rt
+ * rt.reuteras.com
  *
  * Add your own installation to the @include section below and in the
  * SupportedSites section. Search for the string CHANGEME and change to 
@@ -368,14 +368,14 @@ function RTSource() {
 		var scripts = document.getElementsByTagName("script");
 		var link=-1;
 		for ( var i = 0; i < scripts.length; i++) {
-			if (scripts[i].hasAttribute("src") && scripts[i].src.match("/util.js")) {
+			if (scripts[i].hasAttribute("src") && scripts[i].src.match("/ckeditor.js")) {
 				link=i;
 			}
 		}
 		if (link == -1){
 			return false;
 		}
-		var url = scripts[link].src.replace(/NoAuth\/js\/util.js/,"");
+		var url = scripts[link].src.replace(/static\/RichText\/ckeditor.js/,"");
 		var base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
 		url.replace(base);
 		return url;	
