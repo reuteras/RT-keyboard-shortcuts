@@ -7,6 +7,7 @@
  * Adds keyboard navigation for:
  * ticket.sys.kth.se
  * rt.reuteras.com
+ * rt.cpan.org
  *
  * Add your own installation to the @include section below and in the
  * SupportedSites section. Search for the string CHANGEME and change to 
@@ -49,8 +50,9 @@
 // ==UserScript==
 // @name          RT Keyboard Shortcuts
 // @description   Adds keyboard shortcuts for RT.
-// @include       https://ticket.sys.kth.se*
-// @include       https://rt.reuteras.com/rt*
+// @include       https://ticket.sys.kth.se/*
+// @include       https://rt.reuteras.com/*
+// @include       https://rt.cpan.org/*
 // @grant         none
 // ==/UserScript==
 // CHANGEME
@@ -475,7 +477,7 @@ function RTSource() {
 			'n': function() { RTmatch_link(/Search\/Build.html\?NewQuery=1/); },
 			's': function() { RTmatch_link(/Search\/Results.html\?Format=/); }
 		},
-		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.8alpha."); return true; },
+		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.9."); return true; },
 		// CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
 		// queue. I'll try to get the code or a pointer to it later...
 		'x': function() { RTform_submit("quick-spam"); }
@@ -493,7 +495,8 @@ function RTSource() {
 var SupportedSites = {
 	// CHANGEME
 	'kth.se':			RTSource,
-	'reuteras.com':	RTSource
+	'reuteras.com':	    RTSource,
+	'rt.cpan.org':      RTSource,
 };
 
 /*
