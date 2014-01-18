@@ -48,12 +48,15 @@
 // --------------------------------------------------------------------
 //
 // ==UserScript==
-// @name          RT Keyboard Shortcuts
-// @description   Adds keyboard shortcuts for RT.
-// @include       https://ticket.sys.kth.se/*
-// @include       https://rt.reuteras.com/*
-// @include       https://rt.cpan.org/*
-// @grant         none
+// @name            RT Keyboard Shortcuts
+// @description     Adds keyboard shortcuts to RT.
+// @include         https://ticket.sys.kth.se/*
+// @include         https://rt.reuteras.com/*
+// @include         https://rt.cpan.org/*
+// @grant           none
+// @downloadURL     https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.user.js
+// @updateURL       https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.meta.js
+// @version         0.1.0
 // ==/UserScript==
 // CHANGEME
 
@@ -64,6 +67,7 @@
  *  ===========================================================
  */
 function ShortcutsSource() {
+    var myVersion = "Version of RT keyboard shourtcuts is 0.1.0";
 	var shortcutListener = {
 		listen: true,
 		shortcut: null,
@@ -477,7 +481,7 @@ function RTSource() {
 			'n': function() { RTmatch_link(/Search\/Build.html\?NewQuery=1/); },
 			's': function() { RTmatch_link(/Search\/Results.html\?Format=/); }
 		},
-		'V': function() { alert("Version of RT keyboard shourtcuts is 0.0.9."); return true; },
+		'V': function() { alert(myVersion); return true; },
 		// CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
 		// queue. I'll try to get the code or a pointer to it later...
 		'x': function() { RTform_submit("quick-spam"); }
