@@ -109,7 +109,7 @@ function ShortcutsSource() {
                     (targetNodeName === "input" && target.type &&
                     (target.type.toLowerCase() === "text" ||
                     target.type.toLowerCase() === "password"))
-                    )  {
+                    ) {
                     return true;
                 }
             }
@@ -160,7 +160,7 @@ function ShortcutsSource() {
             if (document.addEventListener) {
                 document.addEventListener(name, function(e) {shortcutListener.keyCollector(e);}, false);
             } else if (document.attachEvent) {
-                document.attachEvent('on'+name, function(e) {shortcutListener.keyCollector(e);});
+                document.attachEvent('on'+name, function(e) {shortcutListener.keyCollector(e); });
             }
         },
 
@@ -175,7 +175,7 @@ function ShortcutsSource() {
             if (e.altKey || e.ctrlKey || e.metaKey) { return false; }
             var keyCode = e.keyCode;
             // do not listen for Ctrl, Alt, Tab, Space, Esc and others
-            for (var key in this.keys) {
+            for (key in this.keys) {
                 if (e.keyCode === this.keys[key]) { return false; }
             }
             // do not listen for functional keys
