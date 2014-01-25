@@ -56,7 +56,7 @@
 // @grant           none
 // @downloadURL     https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.user.js
 // @updateURL       https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.meta.js
-// @version         0.1.0
+// @version         0.1.1
 // ==/UserScript==
 // CHANGEME
 
@@ -67,7 +67,7 @@
  *  ===========================================================
  */
 function ShortcutsSource() {
-    var myVersion = "Version of RT keyboard shourtcuts is 0.1.0";
+    var myVersion = "Version of RT keyboard shourtcuts is 0.1.1";
 	var shortcutListener = {
 		listen: true,
 		shortcut: null,
