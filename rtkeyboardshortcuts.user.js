@@ -105,10 +105,10 @@ function ShortcutsSource() {
             var target = e.target || e.srcElement;
             if (target && target.nodeName) {
                 var targetNodeName = target.nodeName.toLowerCase();
-                if (targetNodeName == "textarea" || targetNodeName == "select" ||
-                    (targetNodeName == "input" && target.type &&
-                    (target.type.toLowerCase() == "text" ||
-                    target.type.toLowerCase() == "password"))
+                if (targetNodeName === "textarea" || targetNodeName === "select" ||
+                    (targetNodeName === "input" && target.type &&
+                    (target.type.toLowerCase() === "text" ||
+                    target.type.toLowerCase() === "password"))
                     )  {
                     return true;
                 }
@@ -176,7 +176,7 @@ function ShortcutsSource() {
             var keyCode = e.keyCode;
             // do not listen for Ctrl, Alt, Tab, Space, Esc and others
             for (var key in this.keys) {
-                if (e.keyCode == this.keys[key]) { return false; }
+                if (e.keyCode === this.keys[key]) { return false; }
             }
             // do not listen for functional keys
             if (navigator.userAgent.match(/Gecko/)) {
@@ -189,7 +189,7 @@ function ShortcutsSource() {
             var letter = String.fromCharCode(code).toLowerCase();
             if (e.shiftKey) { letter = letter.toUpperCase(); }
             // IE hack to support "?"
-            if (window.ie && (code == 191) && e.shiftKey) {
+            if (window.ie && (code === 191) && e.shiftKey) {
                 letter = '?';
             }
             if (shortcutListener.process(letter)) { shortcutListener.stopEvent(e); }
@@ -203,7 +203,7 @@ function ShortcutsSource() {
             if (!shortcutListener.shortcut) { shortcutListener.shortcut = SHORTCUTS; }
             // if unknown letter then say goodbye
             if (!shortcutListener.shortcut[letter]) { return false; }
-            if (typeof(shortcutListener.shortcut[letter]) == "function") {
+            if (typeof(shortcutListener.shortcut[letter]) === "function") {
                 shortcutListener.shortcut[letter]();
                 shortcutListener.clearCombination();
             } else {
@@ -324,11 +324,11 @@ function RTSource() {
         var links = document.getElementsByTagName("link");
         var link=-1;
         for ( var i = 0; i < links.length; i++) {
-            if (links[i].hasAttribute("rel") && links[i].rel == direction) {
+            if (links[i].hasAttribute("rel") && links[i].rel === direction) {
             link=i;
             }
         }
-        if (link == -1){
+        if (link === -1){
             event.returnValue = false;
             return false;
         }
@@ -356,10 +356,10 @@ function RTSource() {
         for ( var i = 0; i < links.length; i++) {
             if (links[i].href.match(matchString)) {
                 link=i;
-                if (breakOn == "break") { break; }
+                if (breakOn === "break") { break; }
             }
         }
-        if (link == -1){
+        if (link === -1){
             event.returnValue = false;
             alert("nothing to do");
             return false;
@@ -377,7 +377,7 @@ function RTSource() {
                 link=i;
             }
         }
-        if (link == -1){
+        if (link === -1){
             return false;
         }
         var url = scripts[link].src.replace(/static\/RichText\/ckeditor.js/,"");
@@ -413,7 +413,7 @@ function RTSource() {
     function RTqueue() {
         var queue = prompt("Open queue:", "");
         if (queue){
-            if(arguments[0] == "new" ){
+            if(arguments[0] === "new" ){
                 queue=queue + ".*new";
                 RTmatch_link(queue);
             }else{
