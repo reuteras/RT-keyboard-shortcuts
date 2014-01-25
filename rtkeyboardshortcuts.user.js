@@ -499,8 +499,8 @@ function RTSource() {
 var SupportedSites = {
 	// CHANGEME
 	'kth.se':			RTSource,
-	'reuteras.com':	    RTSource,
-	'rt.cpan.org':      RTSource,
+	'rt.reuteras.com':	RTSource,
+	'rt.cpan.org':      RTSource
 };
 
 /*
@@ -520,10 +520,12 @@ var addScript = function(ShortcutsSource) {
 	var source = getSource(ShortcutsSource);
     
 	for (var site in SupportedSites) {
-		if (typeof(site) != 'string') { continue; }
-		if (location.href.match(site)) {
-			source += getSource(SupportedSites[site]) + '\n window.Cursor.init();';
-			break;
+	    if(SupportedSites.hasOwnProperty(site)){
+		    if (typeof(site) != 'string') { continue; }
+		    if (location.href.match(site)) {
+			    source += getSource(SupportedSites[site]) + '\n window.Cursor.init();';
+			    break;
+			}
 		}
 	}
     
