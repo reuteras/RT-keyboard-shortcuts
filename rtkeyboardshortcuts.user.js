@@ -67,8 +67,7 @@
  *  ===========================================================
  */
 function ShortcutsSource() {
-    var myVersion = "Version of RT keyboard shourtcuts is 0.1.1";
-    var shortcutListener = {
+    var myVersion = "Version of RT keyboard shourtcuts is 0.1.1", shortcutListener = {
         listen: true,
         shortcut: null,
         combination: '',
