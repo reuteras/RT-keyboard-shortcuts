@@ -325,8 +325,8 @@ function RTSource() {
 
     // Navigoation using the rel links in the page from RT
     function RTnext_or_prev(direction) {
-        var links = document.getElementsByTagName("link"), link =- 1;
-        for (var i = 0; i < links.length; i++) {
+        var links = document.getElementsByTagName("link"), link = -1, i;
+        for (i = 0; i < links.length; i++) {
             if (links[i].hasAttribute("rel") && links[i].rel === direction) {
             link=i;
             }
