@@ -286,7 +286,7 @@ function RTSource() {
             '\n=== Ticket navigation ===\n' +
             'F - open first ticket\n' +
             'L - open last ticket\n' +
-            'n - open next ticket\n'+
+            'n - open next ticket\n' +
             'p - open previous ticket\n' +
             '\n=== General navigation ===\n' +
             'g -> \n' +
@@ -308,13 +308,13 @@ function RTSource() {
             '/ - Search\n' +
             '? - this help\n';
 
-        alert(RCursorHelp);
+        window.alert(RCursorHelp);
         return true;
     };
 
     // Submit the form named formName
     function RTform_submit(formName) {
-        if (document.getElementById(formName)){
+        if (document.getElementById(formName)) {
             document.forms[formName].submit();
         } else {
             event.returnValue = false;
@@ -325,9 +325,8 @@ function RTSource() {
 
     // Navigoation using the rel links in the page from RT
     function RTnext_or_prev(direction) {
-        var links = document.getElementsByTagName("link");
-        var link=-1;
-        for ( var i = 0; i < links.length; i++) {
+        var links = document.getElementsByTagName("link"), link =- 1;
+        for (var i = 0; i < links.length; i++) {
             if (links[i].hasAttribute("rel") && links[i].rel === direction) {
             link=i;
             }
@@ -365,7 +364,7 @@ function RTSource() {
         }
         if (link === -1){
             event.returnValue = false;
-            alert("nothing to do");
+            window.alert("nothing to do");
             return false;
         }
         window.location = links[link].href;
@@ -484,7 +483,7 @@ function RTSource() {
             'n': function() { RTmatch_link(/Search\/Build.html\?NewQuery=1/); },
             's': function() { RTmatch_link(/Search\/Results.html\?Format=/); }
         },
-        'V': function() { alert(myVersion); return true; },
+        'V': function() { window.alert(myVersion); return true; },
         // CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
         // queue. I'll try to get the code or a pointer to it later...
         'x': function() { RTform_submit("quick-spam"); }
