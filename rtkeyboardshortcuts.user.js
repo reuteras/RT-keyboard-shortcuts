@@ -69,6 +69,7 @@
  *  ===========================================================
  */
 function ShortcutsSource() {
+    "use strict";
     var myVersion = "Version of RT keyboard shourtcuts is 0.1.1", shortcutListener = {
         listen: true,
         shortcut: null,
@@ -109,10 +110,9 @@ function ShortcutsSource() {
             if (target && target.nodeName) {
                 targetNodeName = target.nodeName.toLowerCase();
                 if (targetNodeName === "textarea" || targetNodeName === "select" ||
-                    (targetNodeName === "input" && target.type &&
-                    (target.type.toLowerCase() === "text" ||
-                    target.type.toLowerCase() === "password"))
-                    ) {
+                        (targetNodeName === "input" && target.type &&
+                        (target.type.toLowerCase() === "text" ||
+                        target.type.toLowerCase() === "password"))) {
                     return true;
                 }
             }
@@ -170,14 +170,14 @@ function ShortcutsSource() {
         // Key press collector. Collects all keypresses into combination 
         // and checks it we have action for it
         keyCollector: function(e) {
-            var key;
+            var key, keyCode, code, letter;
             // do not listen if no shortcuts defined
             if (!window.SHORTCUTS) { return false; }
             // do not listen if listener was explicitly turned off
             if (!shortcutListener.listen) { return false; }
             // leave modifiers for browser
             if (e.altKey || e.ctrlKey || e.metaKey) { return false; }
-            var keyCode = e.keyCode;
+            keyCode = e.keyCode;
             // do not listen for Ctrl, Alt, Tab, Space, Esc and others
             for (key in this.keys) {
                 if (e.keyCode === this.keys[key]) { return false; }
@@ -189,8 +189,8 @@ function ShortcutsSource() {
             // do not listen in input/select/textarea fields
             if (this.isInputTarget(e)) { return false; }
             // get letter pressed for different browsers
-            var code = e.which ? e.which : e.keyCode;
-            var letter = String.fromCharCode(code).toLowerCase();
+            code = e.which ? e.which : e.keyCode;
+            letter = String.fromCharCode(code).toLowerCase();
             if (e.shiftKey) { letter = letter.toUpperCase(); }
             // IE hack to support "?"
             if (window.ie && (code === 191) && e.shiftKey) {
