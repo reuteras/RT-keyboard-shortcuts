@@ -258,7 +258,9 @@ function RTSource() {
         init: function() {
             shortcutListener.init();
         }
-    }, SHORTCUTS = {
+    }, RThelp, RTform_submit, RTnext_or_prev, RTmatch_name, RTmatch_link, 
+        rTbaseurl, RThome, RTgototicket, RTqueue,
+    SHORTCUTS = {
         '?': function() { RThelp(); },
         '/': function() { RTmatch_link(/Search\/Build\.html/); },
         '#': function() { RTgototicket(); },
