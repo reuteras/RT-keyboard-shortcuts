@@ -383,20 +383,20 @@ function RTSource() {
             base = "";
         for (i = 0; i < scripts.length; i++) {
             if (scripts[i].hasAttribute("src") && scripts[i].src.match("/ckeditor.js")) {
-                link=i;
+                link = i;
             }
         }
-        if (link === -1){
+        if (link === -1) {
             return false;
         }
-        url = scripts[link].src.replace(/static\/RichText\/ckeditor.js/,"");
+        url = scripts[link].src.replace(/static\/RichText\/ckeditor.js/, "");
         base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
         url.replace(base);
         return url;
     }
 
     // RT home
-    function RThome(){
+    function RThome() {
         var url = RTbaseurl();
         if (url) {
             window.location = url + "index.html";
@@ -408,9 +408,9 @@ function RTSource() {
 
     // Open ticket number given by prompt number
     function RTgototicket() {
-        var nr = prompt("Open ticket:", "");
+        var nr = window.prompt("Open ticket:", ""), url;
         if (nr){
-            var url = RTbaseurl();
+            url = RTbaseurl();
             window.location = url + "Ticket/Display.html?id=" + nr;
             return true;
         }
