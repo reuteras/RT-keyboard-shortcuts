@@ -258,7 +258,9 @@ function RTSource() {
         init: function() {
             shortcutListener.init();
         }
-    }, RThelp = function () {
+    }; 
+    
+    function RThelp() {
         var RCursorHelp =
             '\n=== Ticket ===\n' +
             '# - open ticket with number\n' +
@@ -354,8 +356,8 @@ function RTSource() {
 
     // Match a part of a url and follow it
     function RTmatch_link(matchString) {
-        var empty = "", 
-            breakOn = [(arguments[1]) || empty],
+        var argone = arguments[1],
+            breakOn = [argone || ""],
             links = document.getElementsByTagName("a"),
             link = -1,
             i = 0;
@@ -389,7 +391,7 @@ function RTSource() {
         if (link === -1) {
             return false;
         }
-        url = scripts[link].src.replace(/static\/RichText\/ckeditor.js/, "");
+        url = scripts[link].src.replace(/static\/RichText\/ckeditor\.js/, "");
         base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
         url.replace(base);
         return url;
@@ -409,7 +411,7 @@ function RTSource() {
     // Open ticket number given by prompt number
     function RTgototicket() {
         var nr = window.prompt("Open ticket:", ""), url;
-        if (nr){
+        if (nr) {
             url = RTbaseurl();
             window.location = url + "Ticket/Display.html?id=" + nr;
             return true;
@@ -420,12 +422,12 @@ function RTSource() {
 
     // Open the first queue matched by the text from the prompt
     function RTqueue() {
-        var queue = prompt("Open queue:", "");
-        if (queue){
-            if(arguments[0] === "new" ){
+        var queue = window.prompt("Open queue:", "");
+        if (queue) {
+            if (arguments[0] === "new" ){
                 queue=queue + ".*new";
                 RTmatch_link(queue);
-            }else{
+            } else {
                 RTmatch_link(queue, "break");
             }
             return true;
