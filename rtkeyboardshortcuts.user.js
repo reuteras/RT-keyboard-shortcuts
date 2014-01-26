@@ -45,11 +45,7 @@
  *  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*jslint browser: true */
-/*jslint newcap: true */
-/*jslint plusplus: true */
-/*jslint unparam: true */
-/*jslint vars: true */
+/*jslint browser: true, newcap: true, plusplus: true, unparam: true, vars: true */
 /*global RThelp: false, RTform_submit: false, RTnext_or_prev: false,
  RTmatch_name: false, RTmatch_link: false, rTbaseurl: false,
  RThome: false, RTgototicket: false, RTqueue: false */
