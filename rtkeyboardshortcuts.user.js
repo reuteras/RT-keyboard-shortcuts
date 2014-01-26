@@ -331,19 +331,19 @@ function RTSource() {
                 link = i;
             }
         }
-        if (link === -1){
+        if (link === -1) {
             event.returnValue = false;
             return false;
         }
         // Ugly replace, have to check if our last upgrade introduced a conf error CHANGEME
-        window.location = links[link].href.replace(/Ticket/,"/Ticket");
+        window.location = links[link].href.replace(/Ticket/, "/Ticket");
         return true;
     }
 
     // Get the link for the element matchstring and follow it
     function RTmatch_name(matchString) {
         var link = document.getElementsByName(matchString);
-        if (link){
+        if (link) {
             window.location = link.href;
             return true;
         }
@@ -353,9 +353,9 @@ function RTSource() {
 
     // Match a part of a url and follow it
     function RTmatch_link(matchString) {
-        var breakOn = (arguments[1]) ? arguments[1] : "" ;
-        var links = document.getElementsByTagName("a");
-        var link=-1;
+        var breakOn = [(arguments[1]) || ""],
+        links = document.getElementsByTagName("a"),
+        link = -1;
         for ( var i = 0; i < links.length; i++) {
             if (links[i].href.match(matchString)) {
                 link=i;
