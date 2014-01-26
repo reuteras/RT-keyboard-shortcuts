@@ -48,6 +48,9 @@
 /*jslint browser: true */
 /*jslint newcap: true */
 /*jslint plusplus: true */
+/*global RThelp: false, RTform_submit: false, RTnext_or_prev: false, 
+ *  RTmatch_name: false, RTmatch_link: false, rTbaseurl: false,
+ *  RThome: false, RTgototicket: false, RTqueue: false */
 
 // --------------------------------------------------------------------
 //
@@ -255,8 +258,7 @@ function ShortcutsSource() {
  */
 function RTSource() {
     "use strict";
-    var RThelp, RTform_submit, RTnext_or_prev, RTmatch_name, RTmatch_link,
-        rTbaseurl, RThome, RTgototicket, RTqueue, Cursor = {
+    var Cursor = {
         init: function() {
             shortcutListener.init();
         }
