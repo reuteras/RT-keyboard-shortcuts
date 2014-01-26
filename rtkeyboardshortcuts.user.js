@@ -353,10 +353,11 @@ function RTSource() {
 
     // Match a part of a url and follow it
     function RTmatch_link(matchString) {
-        var breakOn = [(arguments[1]) || ""],
+        var empty = "", 
+        breakOn = [(arguments[1]) || empty],
         links = document.getElementsByTagName("a"),
         link = -1;
-        for ( var i = 0; i < links.length; i++) {
+        for (var i = 0; i < links.length; i++) {
             if (links[i].href.match(matchString)) {
                 link=i;
                 if (breakOn === "break") { break; }
