@@ -313,7 +313,7 @@ function RTSource() {
 
         window.alert(RCursorHelp);
         return true;
-    } ;
+    }
 
     // Submit the form named formName
     function RTform_submit(formName) {
@@ -376,7 +376,7 @@ function RTSource() {
     }
 
     // Find base url
-    function RTbaseurl() {
+    function rTbaseurl() {
         var scripts = document.getElementsByTagName("script"),
             link = -1,
             i = 0,
@@ -398,7 +398,7 @@ function RTSource() {
 
     // RT home
     function RThome() {
-        var url = RTbaseurl();
+        var url = rTbaseurl();
         if (url) {
             window.location = url + "index.html";
             return true;
@@ -411,7 +411,7 @@ function RTSource() {
     function RTgototicket() {
         var nr = window.prompt("Open ticket:", ""), url;
         if (nr) {
-            url = RTbaseurl();
+            url = rTbaseurl();
             window.location = url + "Ticket/Display.html?id=" + nr;
             return true;
         }
