@@ -258,8 +258,8 @@ function RTSource() {
         init: function() {
             shortcutListener.init();
         }
-    }; 
-    
+    };
+
     function RThelp() {
         var RCursorHelp =
             '\n=== Ticket ===\n' +
@@ -313,7 +313,7 @@ function RTSource() {
 
         window.alert(RCursorHelp);
         return true;
-    };
+    } ;
 
     // Submit the form named formName
     function RTform_submit(formName) {
@@ -356,8 +356,7 @@ function RTSource() {
 
     // Match a part of a url and follow it
     function RTmatch_link(matchString) {
-        var argone = arguments[1],
-            breakOn = [argone || ""],
+        var breakOn = [matchString || ""],
             links = document.getElementsByTagName("a"),
             link = -1,
             i = 0;
