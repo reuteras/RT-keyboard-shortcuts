@@ -328,7 +328,7 @@ function RTSource() {
         var i = 0, links = document.getElementsByTagName("link"), link = -1;
         for (i = 0; i < links.length; i++) {
             if (links[i].hasAttribute("rel") && links[i].rel === direction) {
-            link=i;
+                link = i;
             }
         }
         if (link === -1){
