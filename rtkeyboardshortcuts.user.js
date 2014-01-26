@@ -205,10 +205,10 @@ function ShortcutsSource() {
             if (!window.SHORTCUTS) { return false; }
             if (!shortcutListener.listen) { return false; }
             // if no combination then start from the begining
-            if (!shortcutListener.shortcut) { shortcutListener.shortcut = SHORTCUTS; }
+            if (!shortcutListener.shortcut) { shortcutListener.shortcut = window.SHORTCUTS; }
             // if unknown letter then say goodbye
             if (!shortcutListener.shortcut[letter]) { return false; }
-            if (typeof(shortcutListener.shortcut[letter]) === "function") {
+            if (typeof (shortcutListener.shortcut[letter]) === "function") {
                 shortcutListener.shortcut[letter]();
                 shortcutListener.clearCombination();
             } else {
@@ -252,13 +252,12 @@ function ShortcutsSource() {
  *  ===========================================================
  */
 function RTSource() {
+    "use strict";
     var Cursor = {
         init: function() {
             shortcutListener.init();
         }
-    };
-
-    var RThelp = function () {
+    }, RThelp = function () {
         var RCursorHelp =
             '\n=== Ticket ===\n' +
             '# - open ticket with number\n' +
