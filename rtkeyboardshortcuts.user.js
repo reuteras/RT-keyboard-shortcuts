@@ -258,8 +258,66 @@ function RTSource() {
         init: function() {
             shortcutListener.init();
         }
+    }, SHORTCUTS = {
+        '?': function() { RThelp(); },
+        '/': function() { RTmatch_link(/Search\/Build\.html/); },
+        '#': function() { RTgototicket(); },
+        'a': function() { RTmatch_link(/Status=resolved/); },
+        'b': function() { RTmatch_link(/TicketBookmark/); },
+        'c': function() { RTmatch_link(/Action=Comment/, "break"); },
+        'C': function() { RTmatch_link(/Action=Comment/); },
+        'e': {
+            'b': function() { RTmatch_link(/Modify\.html/); },
+            'd': function() { RTmatch_link(/ModifyDates.html/); },
+            'h': function() { RTmatch_link(/History\.html/); },
+            'j': function() { RTmatch_link(/ModifyAll\.html/); },
+            'l': function() { RTmatch_link(/ModifyLinks\.html/); },
+            'p': function() { RTmatch_link(/ModifyPeople\.html/); },
+            'r': function() { RTmatch_link(/Reminders\.html/); }
+        },
+        'd': function() { RTmatch_link(/\/Display\.html/, "break"); },
+        'f': function() { RTmatch_link(/Forward\.html/); },
+        'F': function() { RTnext_or_prev("first"); },
+        'g': {
+            'a': function() { RTmatch_link(/Approvals/); },
+            'b': function() { RTmatch_link(/Bulk\.html/); },
+            'c': function() { RTmatch_link(/Admin/); },
+            // If you have the documentation installed
+            'd': function() { RTmatch_link(/Developer\/Perldoc/); },
+            'h': function() { RThome(); },
+            'l': function() { RTmatch_link(/NoAuth\/Logout\.html/); },
+            'p': function() { RTmatch_link(/Prefs\/Other\.html/); },
+            'S': function() { RTmatch_link(/Results\.html\?Format/); },
+            's': function() { RTmatch_link(/Simple\.html/); },
+            't': { 
+                'i': function() { RTmatch_link(/Search\/Build\.html/); },
+                'o': function() { RTmatch_link(/Tools/); }
+            }
+        },
+        'L': function() { RTnext_or_prev("last"); },
+        'n': function() { RTnext_or_prev("next"); },
+        'N': function() { RTform_submit("CreateTicketInQueue"); },
+        'o': function() { RTmatch_link(/Status=open/); },
+        'p': function() { RTnext_or_prev("prev"); },
+        'q': function() { RTqueue(); },
+        'Q': function() { RTqueue("new"); },
+        'r': function() { RTmatch_link(/Action=Respond/, "break"); },
+        'R': function() { RTmatch_link(/Action=Respond/); },
+        's': function() { RTmatch_link(/Action=Steal/); },
+        't': function() { RTmatch_link(/Action=Take/); },
+        'T': {
+            'a': function() { RTmatch_link(/Search\/Edit\.html/); },
+            'b': function() { RTmatch_link(/Bulk\.html/); },
+            'e': function() { RTmatch_link(/Search\/Build\.html\?Format=/); },
+            'g': function() { RTmatch_link(/Chart\.html/); },
+            'n': function() { RTmatch_link(/Search\/Build\.html\?NewQuery=1/); },
+            's': function() { RTmatch_link(/Search\/Results\.html\?Format=/); }
+        },
+        'V': function() { window.alert(document.myVersion); return true; },
+        // CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
+        // queue. I'll try to get the code or a pointer to it later...
+        'x': function() { RTform_submit("quick-spam"); }
     };
-
     function RThelp() {
         var RCursorHelp =
             '\n=== Ticket ===\n' +
@@ -434,67 +492,6 @@ function RTSource() {
         event.returnValue = false;
         return false;
     }
-
-    var SHORTCUTS = {
-        '?': function() { RThelp(); },
-        '/': function() { RTmatch_link(/Search\/Build\.html/); },
-        '#': function() { RTgototicket(); },
-        'a': function() { RTmatch_link(/Status=resolved/); },
-        'b': function() { RTmatch_link(/TicketBookmark/); },
-        'c': function() { RTmatch_link(/Action=Comment/, "break"); },
-        'C': function() { RTmatch_link(/Action=Comment/); },
-        'e': {
-            'b': function() { RTmatch_link(/Modify\.html/); },
-            'd': function() { RTmatch_link(/ModifyDates.html/); },
-            'h': function() { RTmatch_link(/History\.html/); },
-            'j': function() { RTmatch_link(/ModifyAll\.html/); },
-            'l': function() { RTmatch_link(/ModifyLinks\.html/); },
-            'p': function() { RTmatch_link(/ModifyPeople\.html/); },
-            'r': function() { RTmatch_link(/Reminders\.html/); }
-        },
-        'd': function() { RTmatch_link(/\/Display\.html/, "break"); },
-        'f': function() { RTmatch_link(/Forward\.html/); },
-        'F': function() { RTnext_or_prev("first"); },
-        'g': {
-            'a': function() { RTmatch_link(/Approvals/); },
-            'b': function() { RTmatch_link(/Bulk\.html/); },
-            'c': function() { RTmatch_link(/Admin/); },
-            // If you have the documentation installed
-            'd': function() { RTmatch_link(/Developer\/Perldoc/); },
-            'h': function() { RThome(); },
-            'l': function() { RTmatch_link(/NoAuth\/Logout\.html/); },
-            'p': function() { RTmatch_link(/Prefs\/Other\.html/); },
-            'S': function() { RTmatch_link(/Results\.html\?Format/); },
-            's': function() { RTmatch_link(/Simple\.html/); },
-            't': { 
-                'i': function() { RTmatch_link(/Search\/Build\.html/); },
-                'o': function() { RTmatch_link(/Tools/); }
-            }
-        },
-        'L': function() { RTnext_or_prev("last"); },
-        'n': function() { RTnext_or_prev("next"); },
-        'N': function() { RTform_submit("CreateTicketInQueue"); },
-        'o': function() { RTmatch_link(/Status=open/); },
-        'p': function() { RTnext_or_prev("prev"); },
-        'q': function() { RTqueue(); },
-        'Q': function() { RTqueue("new"); },
-        'r': function() { RTmatch_link(/Action=Respond/, "break"); },
-        'R': function() { RTmatch_link(/Action=Respond/); },
-        's': function() { RTmatch_link(/Action=Steal/); },
-        't': function() { RTmatch_link(/Action=Take/); },
-        'T': {
-            'a': function() { RTmatch_link(/Search\/Edit\.html/); },
-            'b': function() { RTmatch_link(/Bulk\.html/); },
-            'e': function() { RTmatch_link(/Search\/Build\.html\?Format=/); },
-            'g': function() { RTmatch_link(/Chart\.html/); },
-            'n': function() { RTmatch_link(/Search\/Build\.html\?NewQuery=1/); },
-            's': function() { RTmatch_link(/Search\/Results\.html\?Format=/); }
-        },
-        'V': function() { window.alert(document.myVersion); return true; },
-        // CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
-        // queue. I'll try to get the code or a pointer to it later...
-        'x': function() { RTform_submit("quick-spam"); }
-    };
 }
 
 /*
