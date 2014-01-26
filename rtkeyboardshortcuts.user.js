@@ -48,6 +48,8 @@
 /*jslint browser: true */
 /*jslint newcap: true */
 /*jslint plusplus: true */
+/*jslint unparam: true */
+/*jslint vars: true */
 /*global RThelp: false, RTform_submit: false, RTnext_or_prev: false,
  RTmatch_name: false, RTmatch_link: false, rTbaseurl: false,
  RThome: false, RTgototicket: false, RTqueue: false */
