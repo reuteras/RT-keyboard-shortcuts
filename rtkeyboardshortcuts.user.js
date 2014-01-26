@@ -111,8 +111,7 @@ function ShortcutsSource() {
                 targetNodeName = target.nodeName.toLowerCase();
                 if (targetNodeName === "textarea" || targetNodeName === "select" ||
                         (targetNodeName === "input" && target.type &&
-                        (target.type.toLowerCase() === "text" ||
-                        target.type.toLowerCase() === "password"))) {
+                        (target.type.toLowerCase() === "text" || target.type.toLowerCase() === "password"))) {
                     return true;
                 }
             }
@@ -170,26 +169,28 @@ function ShortcutsSource() {
         // Key press collector. Collects all keypresses into combination 
         // and checks it we have action for it
         keyCollector: function(e) {
-            var key, keyCode, code, letter;
+            var key, code, letter;
             // do not listen if no shortcuts defined
             if (!window.SHORTCUTS) { return false; }
             // do not listen if listener was explicitly turned off
             if (!shortcutListener.listen) { return false; }
             // leave modifiers for browser
             if (e.altKey || e.ctrlKey || e.metaKey) { return false; }
-            keyCode = e.keyCode;
+            var keyCode = e.keyCode;
             // do not listen for Ctrl, Alt, Tab, Space, Esc and others
             for (key in this.keys) {
-                if (e.keyCode === this.keys[key]) { return false; }
+                if(this.keys.hasOwnProperty(key))
+                    if (e.keyCode === this.keys[key]) { return false; }
+                }
             }
             // do not listen for functional keys
             if (navigator.userAgent.match(/Gecko/)) {
-                if (e.keyCode >= 112 && e.keyCode <=123) { return false; }
+                if (e.keyCode >= 112 && e.keyCode <= 123) { return false; }
             }
             // do not listen in input/select/textarea fields
             if (this.isInputTarget(e)) { return false; }
             // get letter pressed for different browsers
-            code = e.which ? e.which : e.keyCode;
+            code = [ e.which || e.keyCode];
             letter = String.fromCharCode(code).toLowerCase();
             if (e.shiftKey) { letter = letter.toUpperCase(); }
             // IE hack to support "?"
