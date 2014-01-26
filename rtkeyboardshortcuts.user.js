@@ -360,11 +360,11 @@ function RTSource() {
             i = 0;
         for (i = 0; i < links.length; i++) {
             if (links[i].href.match(matchString)) {
-                link=i;
+                link = i;
                 if (breakOn === "break") { break; }
             }
         }
-        if (link === -1){
+        if (link === -1) {
             event.returnValue = false;
             window.alert("nothing to do");
             return false;
@@ -375,9 +375,12 @@ function RTSource() {
 
     // Find base url
     function RTbaseurl() {
-        var scripts = document.getElementsByTagName("script");
-        var link=-1;
-        for ( var i = 0; i < scripts.length; i++) {
+        var scripts = document.getElementsByTagName("script"),
+            link = -1,
+            i = 0,
+            url = "",
+            base = "";
+        for (i = 0; i < scripts.length; i++) {
             if (scripts[i].hasAttribute("src") && scripts[i].src.match("/ckeditor.js")) {
                 link=i;
             }
@@ -385,8 +388,8 @@ function RTSource() {
         if (link === -1){
             return false;
         }
-        var url = scripts[link].src.replace(/static\/RichText\/ckeditor.js/,"");
-        var base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
+        url = scripts[link].src.replace(/static\/RichText\/ckeditor.js/,"");
+        base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
         url.replace(base);
         return url;
     }
