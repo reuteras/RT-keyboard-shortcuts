@@ -104,9 +104,10 @@ function ShortcutsSource() {
         },
 
         isInputTarget: function(e) {
-            var target = e.target || e.srcElement;
+            var targetNodeName, target;
+            target = e.target || e.srcElement;
             if (target && target.nodeName) {
-                var targetNodeName = target.nodeName.toLowerCase();
+                targetNodeName = target.nodeName.toLowerCase();
                 if (targetNodeName === "textarea" || targetNodeName === "select" ||
                     (targetNodeName === "input" && target.type &&
                     (target.type.toLowerCase() === "text" ||
@@ -160,15 +161,16 @@ function ShortcutsSource() {
                 name = 'keydown';
             }
             if (document.addEventListener) {
-                document.addEventListener(name, function(e) {shortcutListener.keyCollector(e);}, false);
+                document.addEventListener(name, function(e) {shortcutListener.keyCollector(e); }, false);
             } else if (document.attachEvent) {
-                document.attachEvent('on'+name, function(e) {shortcutListener.keyCollector(e); });
+                document.attachEvent('on' + name, function(e) {shortcutListener.keyCollector(e); });
             }
         },
 
         // Key press collector. Collects all keypresses into combination 
         // and checks it we have action for it
         keyCollector: function(e) {
+            var key;
             // do not listen if no shortcuts defined
             if (!window.SHORTCUTS) { return false; }
             // do not listen if listener was explicitly turned off
