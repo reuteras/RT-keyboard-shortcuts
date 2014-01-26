@@ -45,7 +45,7 @@
  *  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*jslint browser: true, newcap: true, plusplus: true, unparam: true, vars: true, continue: true */
+/*jslint browser: true, newcap: true, plusplus: true, unparam: true, vars: true, continue: true, evil: true */
 /*global RThelp: false, RTform_submit: false, RTnext_or_prev: false,
  RTmatch_name: false, RTmatch_link: false, rTbaseurl: false,
  RThome: false, RTgototicket: false, RTqueue: false */
@@ -529,17 +529,17 @@ var addScript = function(ShortcutsSource) {
 
     for (site in SupportedSites) {
         if (SupportedSites.hasOwnProperty(site)) {
-            if (typeof (site) !== 'string') { continue; }
+            if (typeof site !== 'string') { continue; }
             if (location.href.match(site)) {
                 source += getSource(SupportedSites[site]) + '\n window.Cursor.init();';
                 break;
             }
         }
     }
-    
+
     text = document.createTextNode(source);
     script.appendChild(text);
-    script.setAttribute('id','RTKeyboardShortcuts');
+    script.setAttribute('id', 'RTKeyboardShortcuts');
     if (!document.getElementById('RTKeyboardShortcuts')) {
         document.body.appendChild(script);
     }
