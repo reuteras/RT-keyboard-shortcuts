@@ -179,7 +179,7 @@ function ShortcutsSource() {
             var keyCode = e.keyCode;
             // do not listen for Ctrl, Alt, Tab, Space, Esc and others
             for (key in this.keys) {
-                if(this.keys.hasOwnProperty(key))
+                if (this.keys.hasOwnProperty(key))
                     if (e.keyCode === this.keys[key]) { return false; }
                 }
             }
