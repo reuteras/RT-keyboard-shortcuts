@@ -169,17 +169,17 @@ function ShortcutsSource() {
         // Key press collector. Collects all keypresses into combination 
         // and checks it we have action for it
         keyCollector: function(e) {
-            var key, code, letter;
+            var key, keyCode, code, letter;
             // do not listen if no shortcuts defined
             if (!window.SHORTCUTS) { return false; }
             // do not listen if listener was explicitly turned off
             if (!shortcutListener.listen) { return false; }
             // leave modifiers for browser
             if (e.altKey || e.ctrlKey || e.metaKey) { return false; }
-            var keyCode = e.keyCode;
+            keyCode = e.keyCode;
             // do not listen for Ctrl, Alt, Tab, Space, Esc and others
             for (key in this.keys) {
-                if (this.keys.hasOwnProperty(key))
+                if (this.keys.hasOwnProperty(key)) {
                     if (e.keyCode === this.keys[key]) { return false; }
                 }
             }
