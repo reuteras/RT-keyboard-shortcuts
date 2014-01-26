@@ -45,7 +45,7 @@
  *  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*jslint browser: true, newcap: true, plusplus: true, unparam: true, vars: true */
+/*jslint browser: true, newcap: true, plusplus: true, unparam: true, vars: true, continue: true */
 /*global RThelp: false, RTform_submit: false, RTnext_or_prev: false,
  RTmatch_name: false, RTmatch_link: false, rTbaseurl: false,
  RThome: false, RTgototicket: false, RTqueue: false */
@@ -523,13 +523,13 @@ var addScript = function(ShortcutsSource) {
         var js = func.toString(), i = js.indexOf('{');
         js = js.substr(i + 1, js.length - i - 2);
         return js;
-    }, script = document.createElement('script'), 
-    source = getSource(ShortcutsSource),
-    site, text;
+    }, script = document.createElement('script'),
+        source = getSource(ShortcutsSource),
+        site, text;
 
     for (site in SupportedSites) {
-        if(SupportedSites.hasOwnProperty(site)){
-            if (typeof(site) != 'string') { continue; }
+        if (SupportedSites.hasOwnProperty(site)) {
+            if (typeof (site) !== 'string') { continue; }
             if (location.href.match(site)) {
                 source += getSource(SupportedSites[site]) + '\n window.Cursor.init();';
                 break;
