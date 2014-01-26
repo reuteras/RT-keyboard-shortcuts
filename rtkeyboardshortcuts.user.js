@@ -45,7 +45,8 @@
  *  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*jslint browser:true */
+/*jslint browser: true */
+/*jslint newcap: true */
 /*jslint plusplus: true */
 
 // --------------------------------------------------------------------
@@ -269,7 +270,7 @@ function RTSource() {
         'C': function() { RTmatch_link(/Action=Comment/); },
         'e': {
             'b': function() { RTmatch_link(/Modify\.html/); },
-            'd': function() { RTmatch_link(/ModifyDates.html/); },
+            'd': function() { RTmatch_link(/ModifyDates\.html/); },
             'h': function() { RTmatch_link(/History\.html/); },
             'j': function() { RTmatch_link(/ModifyAll\.html/); },
             'l': function() { RTmatch_link(/ModifyLinks\.html/); },
