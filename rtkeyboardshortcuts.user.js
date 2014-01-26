@@ -291,7 +291,7 @@ function RTSource() {
             'p': function() { RTmatch_link(/Prefs\/Other\.html/); },
             'S': function() { RTmatch_link(/Results\.html\?Format/); },
             's': function() { RTmatch_link(/Simple\.html/); },
-            't': { 
+            't': {
                 'i': function() { RTmatch_link(/Search\/Build\.html/); },
                 'o': function() { RTmatch_link(/Tools/); }
             }
@@ -483,7 +483,7 @@ function RTSource() {
     function RTqueue(neworold) {
         var queue = window.prompt("Open queue:", "");
         if (queue) {
-            if (neworold === "new" ) {
+            if (neworold === "new") {
                 queue = queue + ".*new";
                 RTmatch_link(queue);
             } else {
@@ -518,16 +518,16 @@ var SupportedSites = {
  *  ===========================================================
  */
 var addScript = function(ShortcutsSource) {
+    "use strict";
     var getSource = function (func) {
-        var js = func.toString();
-        var i = js.indexOf('{');
+        var js = func.toString(), i = js.indexOf('{');
         js = js.substr(i + 1, js.length - i - 2);
         return js;
-    };
-    var script = document.createElement('script');
-    var source = getSource(ShortcutsSource);
-    
-    for (var site in SupportedSites) {
+    }, script = document.createElement('script'), 
+    source = getSource(ShortcutsSource),
+    site, text;
+
+    for (site in SupportedSites) {
         if(SupportedSites.hasOwnProperty(site)){
             if (typeof(site) != 'string') { continue; }
             if (location.href.match(site)) {
@@ -537,7 +537,7 @@ var addScript = function(ShortcutsSource) {
         }
     }
     
-    var text = document.createTextNode(source);
+    text = document.createTextNode(source);
     script.appendChild(text);
     script.setAttribute('id','RTKeyboardShortcuts');
     if (!document.getElementById('RTKeyboardShortcuts')) {
