@@ -354,10 +354,11 @@ function RTSource() {
     // Match a part of a url and follow it
     function RTmatch_link(matchString) {
         var empty = "", 
-        breakOn = [(arguments[1]) || empty],
-        links = document.getElementsByTagName("a"),
-        link = -1;
-        for (var i = 0; i < links.length; i++) {
+            breakOn = [(arguments[1]) || empty],
+            links = document.getElementsByTagName("a"),
+            link = -1,
+            i = 0;
+        for (i = 0; i < links.length; i++) {
             if (links[i].href.match(matchString)) {
                 link=i;
                 if (breakOn === "break") { break; }
@@ -484,7 +485,7 @@ function RTSource() {
             'n': function() { RTmatch_link(/Search\/Build.html\?NewQuery=1/); },
             's': function() { RTmatch_link(/Search\/Results.html\?Format=/); }
         },
-        'V': function() { window.alert(myVersion); return true; },
+        'V': function() { window.alert(document.myVersion); return true; },
         // CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
         // queue. I'll try to get the code or a pointer to it later...
         'x': function() { RTform_submit("quick-spam"); }
