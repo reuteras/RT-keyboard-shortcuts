@@ -62,7 +62,7 @@
 // @grant           none
 // @downloadURL     https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.user.js
 // @updateURL       https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.meta.js
-// @version         0.1.3
+// @version         0.1.4
 // ==/UserScript==
 // CHANGEME
 
@@ -74,7 +74,7 @@
  */
 function ShortcutsSource() {
     "use strict";
-    var myVersion = "Version of RT keyboard shourtcuts is 0.1.3", shortcutListener = {
+    var myVersion = "Version of RT keyboard shourtcuts is 0.1.4", shortcutListener = {
         listen: true,
         shortcut: null,
         combination: '',
@@ -438,22 +438,10 @@ function RTSource() {
 
     // Find base url
     function rTbaseurl() {
-        var scripts = document.getElementsByTagName("script"),
-            link = -1,
-            i = 0,
-            url = "",
-            base = "";
-        for (i = 0; i < scripts.length; i++) {
-            if (scripts[i].hasAttribute("src") && scripts[i].src.match("/ckeditor.js")) {
-                link = i;
-            }
-        }
-        if (link === -1) {
-            return false;
-        }
-        url = scripts[link].src.replace(/static\/RichText\/ckeditor\.js/, "");
-        base = "/" + window.location.protocol + "\/\/" + window.location.host + "/";
-        url.replace(base);
+        var home = document.getElementById('home'); 
+        var full = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+        var path = home.getAttribute('href');
+        url = full + path;
         return url;
     }
 
