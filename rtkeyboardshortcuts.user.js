@@ -62,7 +62,7 @@
 // @grant           none
 // @downloadURL     https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.user.js
 // @updateURL       https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.meta.js
-// @version         0.1.5
+// @version         0.1.6
 // ==/UserScript==
 // CHANGEME
 
@@ -74,7 +74,7 @@
  */
 function ShortcutsSource() {
     "use strict";
-    var myVersion = "Version of RT keyboard shourtcuts is 0.1.5", shortcutListener = {
+    var myVersion = "Version of RT keyboard shourtcuts is 0.1.6", shortcutListener = {
         listen: true,
         shortcut: null,
         combination: '',
@@ -266,7 +266,7 @@ function RTSource() {
         '/': function() { RTmatch_link(/Search\/Build\.html/); },
         '#': function() { RTgototicket(); },
         'a': function() { RTmatch_link(/Status=resolved/); },
-        'b': function() { RTmatch_link(/TicketBookmark/); },
+        'b': function() { RTmatch_link_click(/TicketBookmark/); },
         'c': function() { RTmatch_link(/Action=Comment/, "break"); },
         'C': function() { RTmatch_link(/Action=Comment/); },
         'e': {
@@ -316,7 +316,7 @@ function RTSource() {
             'n': function() { RTmatch_link(/Search\/Build\.html\?NewQuery=1/); },
             's': function() { RTmatch_link(/Search\/Results\.html\?Format=/); }
         },
-        'V': function() { window.alert(document.myVersion); return true; },
+        'V': function() { window.alert(myVersion); return true; },
         // CHANGEME: This function requires that you have added a form to RT to move a ticket to a spam 
         // queue. I'll try to get the code or a pointer to it later...
         'x': function() { RTform_submit("quick-spam"); }
@@ -413,6 +413,27 @@ function RTSource() {
         }
         event.returnValue = false;
         return false;
+    }
+
+    // Match a part of a url and follow it
+    function RTmatch_link_click(matchString) {
+        var breakOn = [matchStrsng || ""],
+            links = document.getElementsByTagName("a"),
+            link = -1,
+            i = 0;
+        for (i = 0; i < links.length; i++) {
+            if (links[i].href.match(matchString)) {
+                link = i;
+                if (breakOn === "break") { break; }
+            }
+        }
+        if (link === -1) {
+            event.returnValue = false;
+            window.alert("nothing to do");
+            return false;
+        }
+        links[link].OnClick();
+        return true;
     }
 
     // Match a part of a url and follow it
