@@ -62,7 +62,7 @@
 // @grant           none
 // @downloadURL     https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.user.js
 // @updateURL       https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.meta.js
-// @version         0.1.6
+// @version         0.1.7
 // ==/UserScript==
 // CHANGEME
 
@@ -74,7 +74,7 @@
  */
 function ShortcutsSource() {
     "use strict";
-    var myVersion = "Version of RT keyboard shourtcuts is 0.1.6", shortcutListener = {
+    var myVersion = "Version of RT keyboard shourtcuts is 0.1.7", shortcutListener = {
         listen: true,
         shortcut: null,
         combination: '',
@@ -417,7 +417,7 @@ function RTSource() {
 
     // Match a part of a url and follow it
     function RTmatch_link_click(matchString) {
-        var breakOn = [matchStrsng || ""],
+        var breakOn = [matchString || ""],
             links = document.getElementsByTagName("a"),
             link = -1,
             i = 0;
@@ -432,7 +432,7 @@ function RTSource() {
             window.alert("nothing to do");
             return false;
         }
-        links[link].OnClick();
+        links[link].onclick();
         return true;
     }
 
