@@ -63,7 +63,7 @@
 // @grant           none
 // @downloadURL     https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.user.js
 // @updateURL       https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.meta.js
-// @version         0.1.8
+// @version         0.1.9
 // ==/UserScript==
 // CHANGEME
 
@@ -73,9 +73,12 @@
  *  Copyright (c) 2007-2008 Pluron, Inc.
  *  ===========================================================
  */
+
+var myVersion = "Version of RT keyboard shourtcuts is 0.1.9"
+
 function ShortcutsSource() {
     "use strict";
-    var myVersion = "Version of RT keyboard shourtcuts is 0.1.8", shortcutListener = {
+    var shortcutListener = {
         listen: true,
         shortcut: null,
         combination: '',
