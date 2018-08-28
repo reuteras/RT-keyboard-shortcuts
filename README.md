@@ -76,6 +76,3 @@ You can find some information on the project web page:
 
 http://reuteras.github.io/RT%20keyboard%20shortcuts.html
 
-Peter Reuterås
-peter@reuteras.com
-

@@ -1,6 +1,6 @@
 /*
  * RT Keyboard Shortcuts is an extension for RT from bestpractical.org.
- * The extension is an adaptation by Peter Reuterås of Acunote Shortcuts 
+ * The extension is an adaptation by Peter R of Acunote Shortcuts 
  * from Acunote. A very good tool that was extremly easy to adopt for 
  * this purpose!
  *
@@ -256,7 +256,7 @@ function ShortcutsSource() {
 /*
  *  ===========================================================
  *  RT Keyboard Support
- *  Copyright (c) 2010 Peter Reuterås <peter@reuteras.com>.
+ *  Copyright (c) 2010 Peter <code@reuteras.se>.
  *  ===========================================================
  */
 function RTSource() {
