@@ -63,7 +63,7 @@
 // @grant           none
 // @downloadURL     https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.user.js
 // @updateURL       https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.meta.js
-// @version         0.1.9
+// @version         0.2.0
 // ==/UserScript==
 // CHANGEME
 
@@ -287,7 +287,7 @@ function RTSource() {
         'F': function() { RTnext_or_prev("first"); },
         'g': {
             'a': function() { RTmatch_link(/Approvals/); },
-            'b': function() { RTmatch_link(/Bulk\.html/); },
+            'B': function() { RTmatch_link(/Bulk\.html/); },
             'c': function() { RTmatch_link(/Admin/); },
             // If you have the documentation installed
             'd': function() { RTmatch_link(/Developer\/Perldoc/); },
