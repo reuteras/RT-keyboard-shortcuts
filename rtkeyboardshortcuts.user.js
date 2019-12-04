@@ -63,7 +63,7 @@
 // @grant           none
 // @downloadURL     https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.user.js
 // @updateURL       https://github.com/reuteras/RT-keyboard-shortcuts/raw/master/rtkeyboardshortcuts.meta.js
-// @version         0.2.0
+// @version         0.2.1
 // ==/UserScript==
 // CHANGEME
 
@@ -359,7 +359,7 @@ function RTSource() {
             '\n=== General navigation ===\n' +
             'g -> \n' +
             '  a - Approvals\n' +
-            '  b - Bulk update\n' +
+            '  B - Bulk update\n' +
             '  c - Configuration (if you have access)\n' +
             '  d - Developer docs (if installed)\n' +
             '  h - go to front page\n' +
